@@ -1,0 +1,30 @@
+<!--  наследуемся от шаблона default.html -->
+{% extends 'default.html' %}
+
+<!-- Название у нас будет posts -->
+{% block title %}Главная{% endblock title %}
+
+<!-- В контенте на странице мы выводим все посты -->
+{% block content %}
+    {% for ad in ads %}
+        <div class="single-recent-blog-post">
+            <div class="thumb">
+                <img class="img-fluid" src="{{ MEDIA_URL }}{{ ad.poster }}" alt="">
+                <ul class="thumb-info">
+                  <li><a href="#"><i class="ti-user"></i>{{ ad.author }}</a></li>
+                  <li><a href="#"><i class="ti-notepad"></i>{{ ad.date_created }}</a></li>
+                  <li><a href="#"><i class="ti-themify-favicon"></i>{{ ad.comment_set.all.count }} комментари{{ ad.comment_set.all.count|pluralize:"й,ев" }}</a></li>
+                </ul>
+            </div>
+            <div class="details mt-20">
+                <a href="{{ ad.get_absolute_url }}">
+                  <h3>{{ ad.title }}</h3>
+                </a>
+                <p class="tag-list-inline">Категория: <a href="#">{{ ad.category }}</a></p>
+
+                <p>{{ ad.text|truncatewords:100 }}...</p>
+                <a class="button" href="{{ ad.get_absolute_url }}">Подробнее...<i class="ti-arrow-right"></i></a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}

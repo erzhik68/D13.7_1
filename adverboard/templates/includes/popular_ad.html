@@ -1,0 +1,18 @@
+<div class="popular-post-list">
+    {% for ad in ads_limit %}
+    <div class="single-post-list">
+      <div class="thumb">
+        <img class="card-img rounded-0" src="{{ MEDIA_URL }}{{ ad.poster }}" alt="">
+        <ul class="thumb-info">
+          <li><a href="#">{{ ad.author }}</a></li>
+          <li><a href="#">{{ ad.date_created|date:'d M' }}</a></li>
+        </ul>
+      </div>
+      <div class="details mt-20">
+        <a href="blog-single.html">
+          <h6>{{ ad.title }}</h6>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+</div>

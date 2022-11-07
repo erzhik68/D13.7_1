@@ -1,0 +1,19 @@
+<!--  наследуемся от шаблона default.html -->
+{% extends 'default.html' %}
+
+<!-- Название у нас будет  -->
+{% block title %}Создание нового объявления{% endblock title %}
+
+{% block gorizontal_slider %}
+{% endblock gorizontal_slider %}
+
+{% block content %}
+<h2>Создать новое объявление</h2>
+
+<form action="{% url 'ad_create' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="button">Добавить объявление</button>
+</form>
+
+{% endblock content %}
